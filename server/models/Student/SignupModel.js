@@ -1,0 +1,30 @@
+import mongoose from "mongoose";
+ const signup=mongoose.Schema({
+    email:
+    {
+        type:String,
+        required:true,
+        unique:true,
+    },
+    admissionNumber:
+    {
+        type:Number,
+        required:true,
+        unique:true,
+    },
+    department:
+    {
+        type:String,
+        required:true,
+    
+    },
+    password: 
+    {
+        type:String,
+        required:true,
+    }
+    
+
+},{timestamps:true})
+const signupSchema=mongoose.model("signup",signup)
+export default signupSchema
