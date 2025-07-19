@@ -6,7 +6,8 @@ const url="mongodb+srv://adnanahmed2578:WGfLQHotnvOjF7u8@cluster0.y4czkva.mongod
 const connect=mongoose.connect(url)
 .then(()=>
 {
-    console.log("we are connected")
+    
+    console.log("we are ")
     app.listen(port,()=>
 {
     console.log(` we are on port ${port}`)
