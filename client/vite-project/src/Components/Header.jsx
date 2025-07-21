@@ -3,43 +3,65 @@ import { Link } from 'react-router-dom';
 import Mycontext from '../Mycontext';
 
 const Header = () => {
-  const { stundent, setStudent } = useContext(Mycontext);
+  const { student } = useContext(Mycontext);
 
   return (
-    <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-      <div className="text-3xl font-extrabold text-blue-700 tracking-wide">
-        PDF Hub
-      </div>
+    <>
+      {/* Top Header */}
+      <header className="bg-white shadow-md py-4 px-6 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+        {/* Logo */}
+        <div className="text-3xl font-extrabold text-black tracking-wide">
+          PDF Hub
+        </div>
 
-      <nav className="flex items-center gap-8">
-        <Link
-          to="/"
-          className="text-lg font-semibold text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-sm"
-        >
-          Home
-        </Link>
-
-        {stundent && (
-          <div>
+        {/* Navigation Links */}
+        <nav className="flex flex-wrap gap-4 items-center">
           <Link
-            to="/signup/student"
-            className="text-lg font-semibold text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-sm"
+            to="/"
+            className="text-base md:text-lg font-medium text-white bg-black px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-300 shadow"
           >
-            Signup Student
+            Home
+          </Link>
+
+          {student && (
+            <>
+              <Link
+                to="/signup/student"
+                className="text-base md:text-lg font-medium text-white bg-black px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-300 shadow"
+              >
+                Signup Student
+              </Link>
+
+              <Link
+                to="/login/student"
+                className="text-base md:text-lg font-medium text-white bg-black px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-300 shadow"
+              >
+                Login Student
+              </Link>
+            </>
+          )}
+        </nav>
+      </header>
+
+      {/* Sidebar only for logged in student */}
+      {student && (
+        <aside className="fixed top-20 left-0 w-48 h-full bg-gray-100 shadow-lg py-6 px-4 space-y-4">
+          <Link
+            to="/send/pdf/student"
+            className="block text-base font-semibold text-gray-800 bg-white border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-200 transition"
+          >
+            Send PDF
           </Link>
           <Link
-            to="/login/student"
-            className="text-lg font-semibold text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-sm"
+            to="/view/pdf/student"
+            className="block text-base font-semibold text-gray-800 bg-white border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-200 transition"
           >
-            Login Student
+            View PDF
           </Link>
-          </div>
-        )}
-      </nav>
-    </header>
+        </aside>
+      )}
+    </>
   );
 };
 
 export default Header;
-
-

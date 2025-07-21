@@ -5,6 +5,7 @@ const LoginstUDENT=async(req,res,next)=>
 {
     try{
         const {email,password}=req.body;
+      
         if(email&&password)
         {
             const finduser=await signupSchema.findOne({email});
@@ -28,7 +29,7 @@ const LoginstUDENT=async(req,res,next)=>
                })
             }
         const generateToken=await GenerateToken(finduser._id,res);
-        console.log(generateToken)
+ 
         if(!generateToken)
         {
             return res

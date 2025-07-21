@@ -26,5 +26,5 @@ import mongoose from "mongoose";
     
 
 },{timestamps:true})
-const signupSchema=mongoose.model("signup",signup)
+const signupSchema=mongoose.model("signupstudent",signup)
 export default signupSchema

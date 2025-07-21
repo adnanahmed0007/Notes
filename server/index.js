@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import router from "./routes/Studentroutes/Auth.js";
+import routerUpload from "./routes/Studentroutes/UploadRouter.js";
 import cookieParser from "cookie-parser";
 import cors from "cors"
 const app=express();
@@ -16,6 +17,7 @@ app.use(cors(
 app.use(express.json())
 app.use(cookieParser());
 app.use("/api/auth",router)
+app.use("/api/pdf",routerUpload)
 const connect=mongoose.connect(url)
 .then(()=>
 {

@@ -2,72 +2,105 @@
 import Mycontext from '../../Mycontext';
 import axios from 'axios';
 
-const Login = () => {
-  const { email, setEmail, password, setPassword } = useContext(Mycontext);
+const Signup = () => {
+  const {
+    email,
+    setEmail,
+    department,
+    setDepartment,
+    admissionNumber,
+    setAdmissionNumber,
+    password,
+    setPassword,
+  } = useContext(Mycontext);
 
-  async function handleLogin(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-
     try {
       const response = await axios.post(
-        'http://localhost:9901/api/auth/student/login',
+        'http://localhost:9901/api/auth/student/signup',
         {
           email: email.trim().toLowerCase(),
+          department: department.trim().toLowerCase(),
           password: password.trim(),
+          admissionNumber: admissionNumber.trim(),
         },
         { withCredentials: true }
       );
 
       if (response) {
         alert(response.data.message);
-        console.log('Login success:', response);
       }
-    } catch (e) {
-      console.log('Login error:', e);
-      if (e.response && e.response.status === 400) {
-        alert(e.response.data.message);
+    } catch (error) {
+      console.error(error);
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data.message);
       }
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-blue-700 mb-2">
-          Welcome Back
+    <div className="min-h-screen   flex items-center justify-center px-4">
+      <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-black mb-6">
+          Student Signup
         </h2>
-        <p className="text-center text-gray-500 mb-6">
-          Please log in to access your PDF dashboard
-        </p>
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Email */}
           <div>
-            <label className="block mb-1 font-medium text-gray-700">Email</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
             />
           </div>
 
+          {/* Admission Number */}
           <div>
-            <label className="block mb-1 font-medium text-gray-700">Password</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Admission Number</label>
+            <input
+              type="number"
+              placeholder="Enter your admission number"
+              onChange={(e) => setAdmissionNumber(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+
+          {/* Department */}
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Department</label>
+            <input
+              type="text"
+              placeholder="Enter your department"
+              onChange={(e) => setDepartment(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
             />
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold"
+            className="w-full bg-black text-white py-2 rounded-lg font-semibold hover:bg-gray-900 transition duration-300"
           >
-            Login
+            Sign Up
           </button>
         </form>
       </div>
@@ -75,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
