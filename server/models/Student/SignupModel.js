@@ -22,7 +22,18 @@ import mongoose from "mongoose";
     {
         type:String,
         required:true,
+    },
+    otpUser:
+    {
+        type:Number,
+       
+    },
+    isVerified:{
+        type:Boolean,
+        required:true,
+
     }
+    
     
 
 },{timestamps:true})

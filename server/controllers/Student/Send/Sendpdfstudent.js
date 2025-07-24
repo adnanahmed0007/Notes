@@ -36,11 +36,15 @@ try{
         }
         const fileUrl = result.secure_url;
         const userId=req.finduser._id;
-        const newpdfsave=new Studenschemaupload1({
+
+        console.log(req.finduser.department)
+        const department=req.finduser.department;
+        const newpdfsave=await Studenschemaupload1({
             Studentname:Studentname.trim().toLowerCase(),
             pdfName:pdfName.trim().toLowerCase(),
              UserId:userId,
              pdfFile:fileUrl,
+             department:department.trim().toLowerCase(),
 
 
 

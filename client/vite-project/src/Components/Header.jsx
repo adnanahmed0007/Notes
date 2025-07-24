@@ -38,6 +38,13 @@ const Header = () => {
               >
                 Login Student
               </Link>
+              <Link
+                to="/logout/student"
+                className="text-base md:text-lg font-medium text-white bg-black px-4 py-2 rounded-lg hover:bg-gray-800 transition duration-300 shadow"
+              >
+                Logout
+              </Link>
+              
             </>
           )}
         </nav>

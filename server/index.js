@@ -14,6 +14,11 @@ app.use(cors(
     
     }
  ))
+ var randomnnumber=Math.random()*10*10*10*10*10;
+ var floornumber=Math.floor(randomnnumber)
+
+ console.log(randomnnumber)
+ console.log(floornumber)
 app.use(express.json())
 app.use(cookieParser());
 app.use("/api/auth",router)

@@ -9,16 +9,15 @@ const LoginstUDENT=async(req,res,next)=>
         if(email&&password)
         {
             const finduser=await signupSchema.findOne({email});
-            const userPassword=finduser.password;
-            
             if(!finduser)
             {
                 return res
                 .status(400)
                 .json({
-                    message:"user not found",
+                    message:"user not found signup",
                 })
             }
+                const userPassword=finduser.password;
             const chcekpassword=await bcrypt.compare(password,userPassword)
             if(!chcekpassword)
             {
@@ -29,15 +28,7 @@ const LoginstUDENT=async(req,res,next)=>
                })
             }
         const generateToken=await GenerateToken(finduser._id,res);
- 
-        if(!generateToken)
-        {
-            return res
-            .status(400)
-            .json({
-                message:"errir occured"
-            })
-        }
+  
         return res
         .status(200)
         .json({
@@ -46,6 +37,13 @@ const LoginstUDENT=async(req,res,next)=>
         })
 
             
+        }
+        else{
+            return res
+            .status(400)
+            .json({
+                message:"credentials are required"
+            })
         }
 
     }

@@ -1,6 +1,6 @@
 
 import signupSchema from "../../../models/Student/SignupModel.js";
-import GenerateToken from "../../../utils/GenerateToken.js";
+ import otpgenrated from "../../../utils/Emailsendmessage.js";
 import bcrypt from "bcrypt"
 const Signup = async (req, res, next) => {
     try {
@@ -24,37 +24,29 @@ const Signup = async (req, res, next) => {
                         message: "student is already register"
                     })
             }
-            const newUserSignup = new signupSchema({
+           
+       var randomnnumber=Math.random()*10*10*10*10*10;
+       const floornumber=Math.floor(randomnnumber)
+       const isVerified=false;
+       const sendOtp=await otpgenrated(email,floornumber);
+        
+               const newUserSignup = new signupSchema({
                 email: email.trim().toLowerCase(),
                 admissionNumber,
                 department,
                 password: hashpasswordd,
+                otpUser:floornumber,
+                isVerified,
+
             })
-
-            const generateTpkensignup = await GenerateToken(newUserSignup._id, res)
-            
-            const save = await newUserSignup.save();
-            if (!save) {
-                return res
-                    .status(400)
-                    .json({
-                        message: "we could  or save the uers"
-                    })
-            }
-
+              
+            const savedaata=await newUserSignup.save();
             return res
                 .status(200)
                 .json({
                     message: "user data saved successfully",
                     newUserSignup,
                 })
-
-
-
-
-
-
-
 
         }
 

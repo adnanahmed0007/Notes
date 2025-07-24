@@ -5,6 +5,7 @@ const ProtectionMiddleware=async(req,res,next)=>
 {
     try{
 const token=req.cookies.jwt;
+ 
 
  
 if(!token)
@@ -12,7 +13,7 @@ if(!token)
     return res
     .status(400)
     .json({
-        message:"we could not find the token"
+        message:"we could not find the token cookies expiress relogin"
     })
 }
 const verify= jwt.verify(token,jwtsecret);

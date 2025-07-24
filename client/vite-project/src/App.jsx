@@ -7,6 +7,7 @@
  import Sendpdfstudent from './Components/StudentAuthenticcation/Sendpdfstudent'
  import Mycontext from './Mycontext'
  import ViewPdf from './Components/StudentAuthenticcation/ViewPdf'
+ import Logout from './Components/StudentAuthenticcation/Logout'
  
 
  const App = () => {
@@ -24,8 +25,9 @@
   <Route path="/" element={<Home />}/>
   <Route path="/signup/student" element={<Signup />} />
     <Route path="/login/student" element={<Login />} />
+        <Route path="/logout/student" element={<Logout/>} />
     <Route path="/send/pdf/student" element={<Sendpdfstudent />} />
-    <Route path="/view/pdf/student" elemnt ={<ViewPdf />}/>
+    <Route path="/view/pdf/student" element ={<ViewPdf />}/>
     
 
   

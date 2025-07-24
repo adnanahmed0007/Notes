@@ -5,6 +5,12 @@ const Studentpdfschema=new mongoose.Schema({
         type:String,
         required:true,   
     },
+    department:
+    {
+        type:String,
+        required:true,
+
+    },
     pdfName:{
         type:String,
         required:true,
