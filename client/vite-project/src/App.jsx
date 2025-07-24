@@ -8,6 +8,7 @@
  import Mycontext from './Mycontext'
  import ViewPdf from './Components/StudentAuthenticcation/ViewPdf'
  import Logout from './Components/StudentAuthenticcation/Logout'
+ import VerifyOtp from './Components/StudentAuthenticcation/VerifyOtp'
  
 
  const App = () => {
@@ -28,6 +29,7 @@
         <Route path="/logout/student" element={<Logout/>} />
     <Route path="/send/pdf/student" element={<Sendpdfstudent />} />
     <Route path="/view/pdf/student" element ={<ViewPdf />}/>
+<Route path="/verifyotp/student" element={<VerifyOtp />}/>
     
 
   

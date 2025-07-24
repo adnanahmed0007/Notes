@@ -9,4 +9,5 @@
  router.post("/stuednt/login",LoginstUDENT)
  router.get("/student/logout",ProtectionMiddleware,LogoutStudent)
  router.post("/signup/otp/verify",verifyotp)
+ router.post("/login/student/otp",verifyotp)
  export default router;

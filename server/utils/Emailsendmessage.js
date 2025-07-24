@@ -1,12 +1,12 @@
  import nodemailer from "nodemailer"
  const otpgenrated=async(email,floornumber)=>
  {
- const transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-        user: 'julian.spinka@ethereal.email',
-        pass: 'hSQerRe5SJu3qNCrjY'
+        user: 'abbey.kuhic61@ethereal.email',
+        pass: 'EA1kEuP5VXH72N6jBr'
     }
 });
 // Wrap in an async IIFE so we can use await.

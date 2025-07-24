@@ -1,8 +1,9 @@
  import React, { useContext } from 'react';
 import Mycontext from '../../Mycontext';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom'; 
 const Login = () => {
+  const navigate=useNavigate();
   const { email, setEmail, password, setPassword } = useContext(Mycontext);
 
   async function handleLogin(e) {
@@ -18,7 +19,8 @@ const Login = () => {
       );
 
       if (response) {
-        alert(response.data.message);
+         alert(`${response.data.message}. Please check your Gmail — OTP has been sent.`);
+         navigate('/verifyotp/student"');
         console.log('Login success:', response);
       }
     } catch (e) {

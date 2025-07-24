@@ -8,7 +8,7 @@
   if(email&&userOtp)
   {
     const findUser=await signupSchema.findOne({email});
-    console.log(findUser);
+  
    email=email.trim();
     
     if(!findUser)

@@ -46,9 +46,6 @@ try{
              pdfFile:fileUrl,
              department:department.trim().toLowerCase(),
 
-
-
-
         })
         const savepdf=await newpdfsave.save();
         if(savepdf){

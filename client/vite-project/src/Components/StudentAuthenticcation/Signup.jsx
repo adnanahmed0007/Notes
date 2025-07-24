@@ -1,8 +1,9 @@
  import React, { useContext } from 'react';
 import Mycontext from '../../Mycontext';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom'; 
 const Signup = () => {
+  const navigate = useNavigate(); // ✅ Step 2
   const {
     email,
     setEmail,
@@ -28,8 +29,9 @@ const Signup = () => {
         { withCredentials: true }
       );
 
-      if (response) {
-        alert(response.data.message);
+      if (response&&response.status==200) {
+         alert(`${response.data.message}. Please check your Gmail — OTP has been sent.`);
+         navigate('/verifyotp/student');
       }
     } catch (error) {
       console.error(error);
