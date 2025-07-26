@@ -29,9 +29,45 @@ const Userdetails = () => {
 
     fetchDetails();
   }, []);
+  const pdfafILEdownload=async(id,pdfName)=>
+    {
+      try{
+        const response=await axios.post(`http://localhost:9901/api/pdf/download/pdf/student/${id}`,
+          {},
+    {
+      withCredentials: true,
+      responseType: 'blob',  
+    });
+         const contentType = response.headers['content-type'];
+        if (contentType !== 'application/pdf') {
+          throw new Error("The file is not a valid PDF.");
+        }
+  
+        const url = window.URL.createObjectURL(new Blob([response.data], { type: contentType }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download",pdfName + ".pdf");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+  
+        window.URL.revokeObjectURL(url);
+  
+        console.log("Download successful", response);
+        
+      }
+      catch(e)
+      {
+        console.log(e)
+        alert("server error occured")
+      }
+  
+    }
+ 
+  
 
   return (
-    <div className="min-h-screen bg-white text-black p-6 ml-[300px]">
+    <div className="min-h-screen bg-white text-black p-6 ml-[300px] " style={{ marginTop: '30px', marginLeft: '200px' }}>
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">👤 Student Profile</h1>
 
       {loading ? (
@@ -78,14 +114,12 @@ const Userdetails = () => {
                 </p>
               </div>
               <div className="mt-4">
-                <a
+                 <button onClick={()=>pdfafILEdownload(pdf._id,pdf.pdfName)}
+                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                 Download PDF ⬇️
+                 </button>
                   
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full block text-center"
-                >
-                  View / Download PDF ⬇️
-                </a>
+                
               </div>
             </div>
           ))

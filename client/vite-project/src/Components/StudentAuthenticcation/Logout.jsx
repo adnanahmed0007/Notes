@@ -24,7 +24,7 @@ const Logout = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
+     <div className="min-h-screen flex items-center justify-center px-4  bg-white">
       <button
         onClick={handleClick}
         className="px-6 py-3 bg-black text-white font-semibold rounded-xl shadow-md hover:bg-gray-900 transition duration-300"

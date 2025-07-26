@@ -26,7 +26,7 @@ const Allpdf=async(req,res,next)=>
                 return res
                 .status(400)
                 .json({
-                    message:"all the credentials are required"
+                    message:"all the credentials are required",
                 })
             }
     }

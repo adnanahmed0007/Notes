@@ -38,7 +38,7 @@ const Sendpdfstudent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+     <div className="min-h-screen   flex items-center justify-center px-4 ">
       <form
         onSubmit={handleSubmit}
         className="bg-white text-black rounded-xl shadow-md p-8 w-full max-w-md border border-gray-200"
