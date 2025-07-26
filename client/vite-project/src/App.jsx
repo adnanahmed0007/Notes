@@ -9,6 +9,8 @@
  import ViewPdf from './Components/StudentAuthenticcation/ViewPdf'
  import Logout from './Components/StudentAuthenticcation/Logout'
  import VerifyOtp from './Components/StudentAuthenticcation/VerifyOtp'
+ import AllviewPdf from './Components/StudentAuthenticcation/AllviewPdf'
+ import Userdetails from './Components/StudentAuthenticcation/Userdetails'
  
 
  const App = () => {
@@ -30,6 +32,8 @@
     <Route path="/send/pdf/student" element={<Sendpdfstudent />} />
     <Route path="/view/pdf/student" element ={<ViewPdf />}/>
 <Route path="/verifyotp/student" element={<VerifyOtp />}/>
+<Route path="/view/pdf/all" element={<AllviewPdf />}/>
+<Route path="/details/user/student" element={<Userdetails />}/>
     
 
   

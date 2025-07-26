@@ -20,7 +20,7 @@ const Login = () => {
 
       if (response) {
          alert(`${response.data.message}. Please check your Gmail — OTP has been sent.`);
-         navigate('/verifyotp/student"');
+         navigate('/verifyotp/student');
         console.log('Login success:', response);
       }
     } catch (e) {

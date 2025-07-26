@@ -65,6 +65,18 @@ const Header = () => {
           >
             View PDF
           </Link>
+          <Link
+            to="/view/pdf/all"
+            className="block text-base font-semibold text-gray-800 bg-white border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-200 transition"
+          >
+            View PDF All
+          </Link>
+          <Link
+            to="/details/user/student"
+            className="block text-base font-semibold text-gray-800 bg-white border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-200 transition"
+          >
+             INfo
+          </Link>
         </aside>
       )}
     </>

@@ -24,6 +24,12 @@ const Studentpdfschema=new mongoose.Schema({
     {
         type:mongoose.Types.ObjectId,
         ref:"signupstudent",
+    },
+    email:
+    {
+        type:String,
+        required:true,
+        
     }
 
 },{timestamps:true})

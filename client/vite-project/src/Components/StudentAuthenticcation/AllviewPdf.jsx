@@ -1,68 +1,71 @@
  import React, { useState } from 'react';
 import axios from 'axios';
 
-const ViewPdf = () => {
+const AllviewPdf = () => {
   const [pdfs, setPdfs] = useState([]);
   const [pdfName, setPdfName] = useState('');
-  const [department, setDepartment] = useState('');
-  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const fetchPdfs = async () => {
+  const handleSearch = async () => {
+    if (!pdfName) {
+      setMessage("Please enter a PDF name.");
+      return;
+    }
+
     setLoading(true);
+    setMessage('');
     try {
       const response = await axios.post(
-        'http://localhost:9901/api/pdf/student/get/pdf',
-        { pdfName, department },
+        'http://localhost:9901/api/pdf/student/get/all/pdf',
+        { pdfName },
         { withCredentials: true }
       );
-      setPdfs(response.data.findpdf);
-      setMessage(response.data.message);
+
+      const result = response.data.findallapdf;
+
+      if (result && result.length > 0) {
+        setPdfs(result);
+        setMessage(response.data.message);
+      } else {
+        setPdfs([]);
+        setMessage('No PDFs found with that name.');
+      }
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Something went wrong');
-      setPdfs([]);
+      console.error('Error fetching PDFs:', error);
+      setMessage(error.response?.data?.message || 'Something went wrong.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-   <div className="min-h-screen bg-white text-black p-6 ml-[300px]">
-
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-10">
-        📄 View PDF Files
+    <div className="min-h-screen bg-white text-black p-6 ml-[300px]">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        📑 Search Uploaded PDF Files
       </h1>
 
-      <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-10">
+      <div className="flex items-center justify-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Enter PDF Name"
           value={pdfName}
           onChange={(e) => setPdfName(e.target.value)}
-          className="p-3 rounded w-64 text-black bg-white shadow focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <input
-          type="text"
-          placeholder="Enter Department"
-          value={department}
-          onChange={(e) => setDepartment(e.target.value)}
-          className="p-3 rounded w-64 text-black bg-white shadow focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-gray-400 rounded px-4 py-2 w-64"
         />
         <button
-          onClick={fetchPdfs}
-          className="bg-blue-600 text-white font-semibold px-5 py-3 rounded hover:bg-blue-700 transition"
+          onClick={handleSearch}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
-          🔍 Search
+          Search PDF 🔍
         </button>
       </div>
 
-      {loading && <p className="text-center text-lg text-gray-600">Loading...</p>}
-      {!loading && message && (
-        <p className="text-center text-green-600 mb-6">{message}</p>
-      )}
+      {loading && <p className="text-center text-gray-600">Loading PDFs...</p>}
+      {!loading && message && <p className="text-center text-green-600 mb-4">{message}</p>}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-         {pdfs.length > 0 ? (
+        {pdfs.length > 0 ? (
           pdfs.map((pdf) => (
             <div
               key={pdf._id}
@@ -100,5 +103,6 @@ const ViewPdf = () => {
   );
 };
 
-export default ViewPdf;
+export default AllviewPdf;
+
 
